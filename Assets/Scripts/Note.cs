@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using StarterAssets;
 
@@ -11,6 +12,12 @@ public class Note : MonoBehaviour
 
     [Header("Текст записки")]
     [TextArea(minLines: 10, maxLines: 20)] public string text;
+    
+    
+    
+    [Header("Событие после закрытия записки")]
+    public UnityEvent events;
+
 
     private CanvasGroup notePanel;
     private Text noteText;
@@ -66,5 +73,6 @@ public class Note : MonoBehaviour
         Destroy(gameObject);
         fpc.RotationSpeed = 4;
         fpc.MoveSpeed = 4;
+        events.Invoke();
     }
 }
